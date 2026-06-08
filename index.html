@@ -1,80 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&amp;display=swap"
-      rel="stylesheet"
-    />
-    <title>Startpage</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>Startpage</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
 
-  <body>
-    <div class="wrapper">
-      <div class="bg"></div>
-      <div class="maincard">
-        <div class="content">
-          <div class="image">
-            <img id="img" src="images/gif.gif" alt="No image" />
-          </div>
-          <div id="links" class="links">
-            <section>
-              <h3>Daily</h3>
-              <ul>
-                <li><a href="https://mail.google.com/mail/u/0/">Gmail</a></li>
-                <li><a href="https://mail.proton.me/u/0/inbox">Pmail</a></li>
-                <li><a href="https://voz.vn/f/chuyen-tro-linh-tinh.17/">voz - f17</a></li>
-                <li><a href="https://voz.vn/f/diem-bao.33/">voz - f33</a></li>
-                <li><a href="https://voz.vn/f/phan-mem.13/">voz - pm</a></li>
-                <li><a href="https://voz.vn/f/lap-trinh-cntt.91/">voz - IT</a></li>              
-                <li><a href="https://www.youtube.com/">YouTube</a></li>
-              </ul>
-            </section>
-            <section>
-              <h3>Social</h3>
-              <ul>
-                <li><a href="https://www.reddit.com/">r/unixporn</a></li>
-                <li><a href="https://x.com">X</a></li>
-              </ul>
-            </section>
-            <section>
-              <h3>Coding</h3>
-              <ul>
-                <li><a href="https://github.com">Github</a></li>
-                <li><a href="https://leetcode.com">LeetCode</a></li>
-                <li><a href="https://hackerrank.com">HackerRank</a></li> 
-              </ul>
-            </section>
-            <section>
-              <h3>Mics</h3>
-              <ul>
-                <li><a href="https://spiderum.com/?sort=hot&page_idx=1">spiderum</a></li>
-              </ul>
-            </section>
-          </div>
-        </div>
-      
+  <!-- Video background -->
+  <video autoplay muted loop id="bg-video">
+    <source src="bg.mp4" type="video/mp4">
+  </video>
+
+  <!-- Overlay content -->
+  <div class="overlay">
+
+    <h1 id="greeting">Good afternoon</h1>
+
+    <input
+      type="text"
+      id="search"
+      placeholder="Type to search..."
+    />
+
+    <div class="links">
+      <button onclick="go('https://google.com')"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=16" />Google</button>
+      <button onclick="go('https://youtube.com')"><img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=16" />YouTube</button>
+      <button onclick="go('https://github.com')"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=16" />Github</button>
+      <button onclick="go('https://chat.openai.com')"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=16" />ChatGPT</button>
+      <button onclick="go('https://reddit.com')"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=16" />Reddit</button>
+    </div>
+
+    <div class="shortcut-grid">
+      <div class="shortcut-section">
+        <h3>Daily</h3>
+        <ul>
+          <li><a href="https://mail.google.com/mail/u/0/">Gmail</a></li>
+          <li><a href="https://mail.proton.me/u/0/inbox">Pmail</a></li>
+          <li><a href="https://voz.vn/f/chuyen-tro-linh-tinh.17/">voz - f17</a></li>
+          <li><a href="https://voz.vn/f/diem-bao.33/">voz - f33</a></li>
+        </ul>
+      </div>
+      <div class="shortcut-section">
+        <h3>Social</h3>
+        <ul>
+          <li><a href="https://twitter.com/">Twitter</a></li>
+          <li><a href="https://www.reddit.com/r/unixporn">r/unixporn</a></li>
+        </ul>
+      </div>
+      <div class="shortcut-section">
+        <h3>Coding</h3>
+        <ul>
+          <li><a href="https://github.com">Github</a></li>
+          <li><a href="https://leetcode.com">LeetCode</a></li>
+          <li><a href="https://hackerrank.com">HackerRank</a></li>
+          <li><a href="https://voz.vn/f/lap-trinh-cntt.91/">voz - IT</a></li>
+        </ul>
+      </div>
+      <div class="shortcut-section">
+        <h3>Misc</h3>
+        <ul>
+          <li><a href="https://spiderum.com/?sort=hot&page_idx=1">Spiderum</a></li>
+        </ul>
       </div>
     </div>
-  </body>
-  <script>
-   
-    function changeCSS(cssFile, cssLinkIndex) {
-      console.log("Onclick working");
-     var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
-     var newlink = document.createElement("link");
-        newlink.setAttribute("rel", "stylesheet");
-        newlink.setAttribute("type", "text/css");
-        newlink.setAttribute("href", `../${cssFile}/style.css`);
-        changeImgSrc(cssFile);
-        document.getElementsByTagName("head").item(cssLinkIndex).replaceChild(newlink, oldlink);
-}
-    function changeImgSrc(cssFile){
-        var img_bar=document.getElementById("img");
-        img_bar.src=`../${cssFile}/images/gif.gif`;
-    }
-</script>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
